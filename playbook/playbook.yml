@@ -178,7 +178,7 @@
 
     - name: Authenticated against the ECR
       become: true 
-      shell: aws ecr get-login-password --region eu-central-1 | sudo docker login --username AWS --password-stdin "{{ ecr_endpoint }}"
+      shell: aws ecr get-login-password --region eu-central-1 | sudo docker login --username AWS --password-stdin "{{ lookup('env', 'ecr_endpoint') }}"
       register: ecr_login_status
       vars:
         ansible_ssh_extra_args: "-o StrictHostKeyChecking=no"
