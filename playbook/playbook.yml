@@ -172,7 +172,7 @@
   tasks:
     - name: Set AWS Credentials
       become: true
-      shell: sudo aws configure set aws_access_key_id "{{ lookup('env', 'AWS_ACCESS_KEY') }}" && aws configure set aws_secret_access_key "{{ lookup('env', 'AWS_ACCESS_KEY') }}"
+      shell: sudo aws configure set aws_access_key_id "{{ lookup('env', 'AWS_ACCESS_KEY') }}" && aws configure set aws_secret_access_key "{{ lookup('env', 'AWS_SECRET_ACCESS_KEY') }}"
       vars:
         ansible_ssh_extra_args: "-o StrictHostKeyChecking=no"
 
