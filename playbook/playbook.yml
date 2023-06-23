@@ -159,7 +159,7 @@
     - name: Downloading files from s3 bucket
       become: true 
       get_url:
-        url: "{{ s3_object_url }}"
+        url: "{{ lookup('env', 's3_object_url') }}"
         dest: /var/qualityops
         mode: "0755"
         owner: root
