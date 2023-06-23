@@ -1,5 +1,6 @@
 ---
 - name: QualityOPS Installation Playbook - AWS CLI Installation
+  hosts: all
   gather_facts: no
   tasks:
     - name: Install the Required packages
@@ -61,6 +62,7 @@
         ansible_ssh_extra_args: "-o StrictHostKeyChecking=no"
 
 - name: QualityOPS Installation Playbook - Docker  Installation
+  hosts: all
   gather_facts: no
   tasks:
     - name: Install the Required packages fcr Docker installation
@@ -119,6 +121,7 @@
         ansible_ssh_extra_args: "-o StrictHostKeyChecking=no"
 
 - name: Getting objects from s3 bucket
+  hosts: all
   tasks:
     - name: Installing python and pip 
       become: true
@@ -160,7 +163,8 @@
       vars:
         ansible_ssh_extra_args: "-o StrictHostKeyChecking=no"
 
-- name: Authentication against the private ecr 
+- name: Authentication against the private ecr
+  hosts: all
   tasks:
     - name: Set AWS Credentials
       become: true
@@ -182,6 +186,7 @@
         ansible_ssh_extra_args: "-o StrictHostKeyChecking=no"
 
 - name: Running Application  
+  hosts: all
   tasks:
     - name: Running application with docker-compose
       become: true
