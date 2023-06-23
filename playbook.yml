@@ -109,7 +109,7 @@
     - name: Downloading files from s3 bucket
       become: true 
       get_url:
-        url: {{ s3_object_url }}
+        url: "{{ s3_object_url }}"
         dest: /var/qualityops
         mode: "0755"
         owner: root
@@ -119,15 +119,10 @@
   tasks:
     - name: Set AWS Credentials
       become: true
-      vars:
-        aws_access_key: "{{ lookup('env', 'AWS_ACCESS_KEY') }}"
-        aws_secret_key: "{{ lookup('env', 'AWS_SECRET_ACCESS_KEY') }}"
-      shell: sudo aws configure set aws_access_key_id {{ aws_access_key }} && aws configure set aws_secret_access_key {{ aws_secret_key }}
+      shell: sudo aws configure set aws_access_key_id "{{ lookup('env', 'AWS_ACCESS_KEY') }}" && aws configure set aws_secret_access_key "{{ lookup('env', 'AWS_ACCESS_KEY') }}"
     - name: Authenticated against the ECR
       become: true 
-      vars:
-        ecr_endpoint: "{{ ecr_endpoint }}"
-      shell: aws ecr get-login-password --region eu-central-1 | sudo docker login --username AWS --password-stdin {{ ecr_endpoint }}
+      shell: aws ecr get-login-password --region eu-central-1 | sudo docker login --username AWS --password-stdin "{{ ecr_endpoint }}"
       register: ecr_login_status
     - name: ECR Login Status 
       debug:
