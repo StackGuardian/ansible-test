@@ -4,6 +4,7 @@
   gather_facts: no
   tasks:
     - name: Install the Required packages
+      become: true
       apt: 
         name: 
           - unzip
